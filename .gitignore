@@ -1,0 +1,7 @@
+results/*.glb
+results/*.obj
+results/*.fbx
+__pycache__/
+*.pyc
+.env
+.DS_Store

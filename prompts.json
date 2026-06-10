@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "category": "weapon",
+    "naive": "a cool sword"
+  },
+  {
+    "id": 2,
+    "category": "character",
+    "naive": "a warrior"
+  },
+  {
+    "id": 3,
+    "category": "prop",
+    "naive": "a nice vase"
+  },
+  {
+    "id": 4,
+    "category": "creature",
+    "naive": "a dragon"
+  },
+  {
+    "id": 5,
+    "category": "vehicle",
+    "naive": "a futuristic car"
+  },
+  {
+    "id": 6,
+    "category": "prop",
+    "naive": "a wooden barrel"
+  }
+]
