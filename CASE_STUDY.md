@@ -96,6 +96,10 @@ For downloadable GLBs, the tool scores on 5 objective topology metrics:
 
 The optimized prompt produced 20% more geometric detail and confirmed clean, production-ready topology — watertight, zero holes, zero non-manifold edges.
 
+| Naive: `dragon` | Optimized |
+|:---:|:---:|
+| ![Dragon Naive](assets/results/dragon_naive.png) | ![Dragon Optimized](assets/results/dragon_optimized.png) |
+
 Both prompts generated a recognizable dragon. The optimized prompt generated a better one — measurably, not just visually. These are the exact metrics that determine whether a mesh is usable in rigging, animation, and 3D printing pipelines.
 
 **Implication:** Adding explicit style, material, and topology context in the prompt pushes Meshy toward higher-fidelity outputs on complex objects.
@@ -111,6 +115,10 @@ Both prompts generated a recognizable dragon. The optimized prompt generated a b
 | Faces | 129,400 | 167,050 | +37,650 (+29.1%) |
 | Vertices | 64,690 | 83,527 | +18,837 (+29.1%) |
 | Printability | ✅ | ✅ | same |
+
+| Naive: `a cool sword` | Optimized |
+|:---:|:---:|
+| ![Sword Naive](assets/results/sword_naive.png) | ![Sword Optimized](assets/results/sword_optimized.png) |
 
 The optimized prompt produced 29% more geometry. However it also changed the weapon type — the naive prompt generated an **ornate fantasy longsword**, while the optimized prompt generated a **realistic combat knife**.
 
