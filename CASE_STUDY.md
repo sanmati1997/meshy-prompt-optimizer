@@ -1,9 +1,9 @@
-# Meshy Prompt Forge — Case Study
+# Meshy Prompt Optimizer — Case Study
 
 **Author:** Sanmati Sawalwade  
 **Background:** MS Information Systems, Northeastern University (Silicon Valley) | Ex-Gameskraft | Startup Founder  
 **Built in:** One night  
-**Repo:** [github.com/sanmati1997/meshy-prompt-forge](https://github.com/sanmati1997/meshy-prompt-forge)  
+**Repo:** [github.com/sanmati1997/meshy-prompt-optimizer](https://github.com/sanmati1997/meshy-prompt-optimizer)  
 **Live demo:** [meshy-optimizer.streamlit.app](https://meshy-optimizer.streamlit.app)
 
 ---
@@ -53,7 +53,7 @@ This is an **activation problem**. Users hit the friction wall before they see t
 
 ## What I Built
 
-A rule-based prompt optimizer and mesh quality scorer, built in one night on Meshy's free tier.
+A heuristic-driven prompt optimizer and mesh quality scorer, built in one night on Meshy's free tier.
 
 **Stack:** Python · Streamlit · trimesh · Plotly · $0 · No paid APIs.
 
@@ -182,7 +182,7 @@ The fixed-optimized version produced a proper fantasy sword — ornate detailing
 
 **Finding:** `"tempered steel blade"` without style context signals modern/tactical to Meshy. Adding `"Fantasy sword"` as the object-type qualifier anchored the aesthetic and overrode the material ambiguity — even with the same material hint present. **Object-type framing beats material hints when intent is ambiguous.**
 
-**Impact:** Rule-based optimization without style-context detection actively harms user experience. Higher geometry numbers are irrelevant if the output archetype is wrong. The required fix: classify prompt intent (fantasy / realistic / sci-fi) before applying material hints, not after.
+**Impact:** Heuristic-driven optimization without style-context detection actively harms user experience. Higher geometry numbers are irrelevant if the output archetype is wrong. The required fix: classify prompt intent (fantasy / realistic / sci-fi) before applying material hints, not after.
 
 ---
 
@@ -382,7 +382,7 @@ The mesh scoring infrastructure in this project is fully built and validated. Bu
 - Test set is small (6 object types, 1 session each). Findings are directional, not statistically significant.
 - No access to Meshy's internal funnel data — business implications are inferred from public evidence and experiment results.
 - Mesh scoring was blocked by free-tier download limits. Scoring infrastructure is built and validated on external GLBs but could not be run on Meshy-generated pairs.
-- Rule-based rewriter has no feedback loop — rules were reverse-engineered by hand, not learned from real user failure data at scale.
+- Heuristic-driven rewriter has no feedback loop — rules were reverse-engineered by hand, not learned from real user failure data at scale.
 - Generation variance: running the same prompt twice can produce different outputs. Each test was a single run.
 
 Being explicit about these limits is intentional. A PM or data scientist at Meshy would catch overclaiming immediately.
@@ -407,6 +407,6 @@ Built in one night as a research project to understand Meshy's activation funnel
 
 The goal was not to build a polished product — it was to identify a real problem, build a working artifact, and produce evidence-backed findings. The tool is fully external — no internal Meshy data was used or required.
 
-**Repo:** [github.com/sanmati1997/meshy-prompt-forge](https://github.com/sanmati1997/meshy-prompt-forge)  
+**Repo:** [github.com/sanmati1997/meshy-prompt-optimizer](https://github.com/sanmati1997/meshy-prompt-optimizer)  
 **Live demo:** [meshy-optimizer.streamlit.app](https://meshy-optimizer.streamlit.app)  
 **Contact:** sawalwade.s@northeastern.edu | [linkedin.com/in/sanmati-sawalwade](https://linkedin.com/in/sanmati-sawalwade)

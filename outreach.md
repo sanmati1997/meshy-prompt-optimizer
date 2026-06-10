@@ -29,7 +29,7 @@ Hi [Name],
 
 I spent last night investigating Meshy's activation problem. The hypothesis: prompt sensitivity is killing first-session success and suppressing free-to-paid conversion.
 
-To test it, I built a rule-based prompt optimizer + objective mesh scorer (trimesh, 5 topology metrics). Ran it across 6 prompt categories.
+To test it, I built a heuristic-driven prompt optimizer + objective mesh scorer (trimesh, 5 topology metrics). Ran it across 6 prompt categories.
 
 Result: optimized prompts produced measurably better meshes in X/6 cases, averaging +N points on a 0–100 composite score.
 

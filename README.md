@@ -1,4 +1,4 @@
-# Meshy Prompt Forge
+# Meshy Prompt Optimizer
 
 > Turns weak 3D prompts into production-ready ones — built to reduce activation drop-off on Meshy.ai.
 
@@ -153,8 +153,8 @@ Free users can generate but can't export. They can't validate quality before pay
 ## Setup
 
 ```bash
-git clone https://github.com/sanmati1997/meshy-prompt-forge
-cd meshy-prompt-forge
+git clone https://github.com/sanmati1997/meshy-prompt-optimizer
+cd meshy-prompt-optimizer
 pip install -r requirements.txt
 streamlit run app.py
 ```

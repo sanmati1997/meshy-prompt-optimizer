@@ -1,7 +1,7 @@
 """
 Prompt rewriter for Meshy 3D generation.
 Takes a plain-English prompt and rewrites it for better Meshy output.
-Rule-based: every change is explainable, no black-box LLM needed.
+Heuristic-driven: every change is explainable, no black-box LLM needed.
 """
 
 STYLE_KEYWORDS = [

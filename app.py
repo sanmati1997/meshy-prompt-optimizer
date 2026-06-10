@@ -9,7 +9,7 @@ from rewriter import rewrite
 from scorer import score_mesh
 
 st.set_page_config(
-    page_title="Meshy Prompt Forge",
+    page_title="Meshy Prompt Optimizer",
     page_icon="🔺",
     layout="wide"
 )
@@ -33,7 +33,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.title("🔺 Meshy Prompt Forge")
+st.title("🔺 Meshy Prompt Optimizer")
 st.caption("Turns weak 3D prompts into production-ready ones. Built to reduce activation drop-off on Meshy.ai.")
 
 tab1, tab2, tab3 = st.tabs(["Prompt Optimizer", "Mesh Scorer", "Results Dashboard"])
@@ -253,6 +253,6 @@ with tab3:
                 st.download_button(
                     "Download results.csv",
                     f.read(),
-                    file_name="meshy_prompt_forge_results.csv",
+                    file_name="meshy_prompt_optimizer_results.csv",
                     mime="text/csv",
                 )

@@ -1,5 +1,5 @@
 """
-Meshy Prompt Forge — main CLI
+Meshy Prompt Optimizer — main CLI
 Usage:
   python run.py rewrite "a cool sword"
   python run.py score model.glb
@@ -86,7 +86,7 @@ def cmd_batch():
     with open(os.path.join(os.path.dirname(__file__), "prompts.json")) as f:
         prompts = json.load(f)
 
-    print("\nMeshy Prompt Forge — Batch Mode")
+    print("\nMeshy Prompt Optimizer — Batch Mode")
     print("You will generate each model manually in Meshy, then provide the file paths.\n")
     separator()
 
