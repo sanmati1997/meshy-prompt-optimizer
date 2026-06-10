@@ -20,6 +20,33 @@ MATERIAL_KEYWORDS = [
 
 TOPOLOGY_KEYWORDS = ["topology", "quad", "manifold", "watertight", "polygon", "retopology"]
 
+# Game IP → art style mapping
+GAME_IP = {
+    "dota 2": ("Dota 2 stylized hero model, Valve art style", "character"),
+    "dota2": ("Dota 2 stylized hero model, Valve art style", "character"),
+    "dota": ("Dota 2 stylized hero model, Valve art style", "character"),
+    "league of legends": ("League of Legends stylized champion model, Riot art style", "character"),
+    "lol": ("League of Legends stylized champion model, Riot art style", "character"),
+    "world of warcraft": ("World of Warcraft stylized character, Blizzard art style", "character"),
+    "wow": ("World of Warcraft stylized character, Blizzard art style", "character"),
+    "fortnite": ("Fortnite stylized character, Epic Games art style", "character"),
+    "overwatch": ("Overwatch stylized hero, Blizzard art style", "character"),
+    "valorant": ("Valorant stylized agent model, Riot art style", "character"),
+    "minecraft": ("Minecraft voxel-style character, blocky aesthetic", "character"),
+    "pokemon": ("Pokemon stylized creature, Nintendo art style", "creature"),
+}
+
+# Named characters from known IPs (add more as needed)
+KNOWN_CHARACTERS = [
+    "invoker", "shadow fiend", "sf", "pudge", "axe", "crystal maiden",
+    "lina", "lion", "tidehunter", "enigma", "faceless void",
+    "techies", "tinker", "io", "wisp", "meepo", "visage",
+    # lol
+    "jinx", "yasuo", "zed", "lux", "ezreal", "thresh", "ahri",
+    # overwatch
+    "tracer", "reinhardt", "mercy", "genji", "hanzo",
+]
+
 VAGUE_WORDS = {
     "cool": "detailed",
     "nice": "well-crafted",
@@ -66,8 +93,20 @@ PROP_WORDS = [
 ]
 
 
+def detect_game_ip(prompt: str) -> tuple[str, str] | None:
+    """Returns (style_string, object_type) if a known game IP is detected."""
+    p = prompt.lower()
+    for key, value in GAME_IP.items():
+        if key in p:
+            return value
+    return None
+
+
 def detect_object_type(prompt: str) -> str:
     p = prompt.lower()
+    # Named characters take priority
+    if any(w in p for w in KNOWN_CHARACTERS):
+        return "character"
     if any(w in p for w in CHARACTER_WORDS):
         return "character"
     if any(w in p for w in CREATURE_WORDS):
@@ -78,11 +117,18 @@ def detect_object_type(prompt: str) -> str:
         return "vehicle"
     if any(w in p for w in PROP_WORDS):
         return "prop"
+    # If a game IP is present, assume character
+    if detect_game_ip(p):
+        return "character"
     return "object"
 
 
 def infer_style(object_type: str, prompt: str) -> str:
     p = prompt.lower()
+    # Game IP overrides everything
+    ip = detect_game_ip(p)
+    if ip:
+        return ip[0]
     if any(w in p for w in ["fantasy", "magic", "medieval", "mythical"]):
         return "fantasy game-ready asset"
     if any(w in p for w in ["sci-fi", "futuristic", "space", "cyber", "mech"]):
@@ -113,6 +159,9 @@ def infer_material(object_type: str, prompt: str) -> str:
     if object_type == "weapon":
         return "tempered steel blade"
     if object_type == "character":
+        ip = detect_game_ip(prompt)
+        if ip:
+            return "detailed armor and fabric, game-ready PBR materials"
         return "fabric and leather armor"
     if object_type == "creature":
         return "organic skin and scales"
