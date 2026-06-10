@@ -75,6 +75,16 @@ A heuristic-driven prompt optimizer and mesh quality scorer, built in one night 
 
 Every change is explainable. No black-box LLM. A PM can audit every decision.
 
+### What it improves
+
+| For | Improvement | Evidence |
+|---|---|---|
+| Game developers | Rigging-ready characters with **42% less wasted geometry**, no pedestal, clean T-pose | Warrior finding |
+| 3D artists | Complex objects confirmed watertight, **0 holes, 0 non-manifold edges** — no manual repair needed | Dragon finding |
+| Weapon / asset creators | Correct archetype preserved with object-type framing — **+65.4% geometry** without archetype mismatch | Sword (fixed) finding |
+| Pipeline / studio use | Simple props: **-69% holes, -57% non-manifold edges** — cleaner topology for LOD and physics baking | Crate finding |
+| Meshy as a product | Prompt optimization lifts first-session success without touching the model or training data | All findings |
+
 ### Mesh scorer
 
 Scores any GLB on 4 objective topology metrics:
