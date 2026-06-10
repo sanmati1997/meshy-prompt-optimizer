@@ -147,4 +147,4 @@ python run.py compare naive.glb optimized.glb
 ---
 
 Built by [Sanmati Sawalwade](https://linkedin.com/in/sanmatiwalwade) — MS Information Systems, Northeastern University Silicon Valley  
-sawalwade.s@northeastern.edu
+sawalwade.s@northeastern.edu Really Happy to Get a Opportunity For Summer/Fall 2026 Internship
