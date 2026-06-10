@@ -413,3 +413,17 @@ The goal was not to build a polished product — it was to identify a real probl
 **Repo:** [github.com/sanmati1997/meshy-prompt-optimizer](https://github.com/sanmati1997/meshy-prompt-optimizer)  
 **Live demo:** [meshy-optimizer.streamlit.app](https://meshy-optimizer.streamlit.app)  
 **Contact:** sawalwade.s@northeastern.edu | [linkedin.com/in/sanmati-sawalwade](https://linkedin.com/in/sanmati-sawalwade)
+
+---
+
+## A Note on Intent
+
+I didn't build this to check a portfolio box. I built it because the activation problem at Meshy is real, the pain points are specific, and I wanted to prove — to myself and anyone reading — that the gap between a user's first prompt and their "aha moment" is closeable with the right product thinking.
+
+The six findings above are six concrete problems with known solutions. I'd like to help build them.
+
+I'm a strong engineer — I can ship the style-context classifier, the A/B test pipeline, the image-to-3D routing nudge. But my bigger strength is product: I find the friction before users do, build artifacts that prove it, and think in terms of conversion funnels and activation loops, not just code.
+
+If you're at Meshy or working on a similar problem in the 3D / AI / creative tools space — I'm actively interviewing and would be genuinely grateful to be considered for a Summer / Fall 2026 internship. I want to work on problems I actually care about, with people who care about the same things.
+
+**sawalwade.s@northeastern.edu** | [linkedin.com/in/sanmati-sawalwade](https://linkedin.com/in/sanmati-sawalwade)
