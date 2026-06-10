@@ -2,40 +2,28 @@
 
 > Turns weak 3D prompts into production-ready ones — built to reduce activation drop-off on Meshy.ai.
 
-**Live demo:** [link] | **Case study:** [CASE_STUDY.md](CASE_STUDY.md)
-
----
-
-## The Problem
-
-Meshy has 6M users but most never convert to paid. The biggest activation killer: prompt sensitivity.
-
-A user types `"a cool sword"`, gets a mediocre mesh, and leaves before the "aha moment."
-
-Public evidence:
-- G2 reviewer: *"small wording changes produce wildly different results"*
-- Trustpilot: users reporting wasted credits on bad first outputs
-- Meshy's own prompt tips doc — companies only write those when support tickets pile up
-
-Text-to-3D is 10x harder to prompt than text-to-image. There's no established mental model for new users. This tool fills that gap.
+**Live demo:** [link] | **Case study:** [CASE_STUDY.md](CASE_STUDY.md) | **Built in:** one night
 
 ---
 
 ## What It Does
 
-1. Takes a plain-English prompt
-2. Applies rules reverse-engineered from Meshy's failure patterns
-3. Outputs an optimized prompt + explains every change
-4. Scores both generated meshes on objective quality metrics
-5. Quantifies the improvement
+Takes a plain-English prompt → rewrites it using rules reverse-engineered from Meshy's failure patterns → explains every change → scores the generated mesh on objective topology metrics.
+
+```
+Input:   "a cool sword"
+Output:  "3D model of a detailed sword, game-ready low-poly asset, 
+          tempered steel blade, clean quad topology, isolated object, 
+          no background"
+
+Changes: 6 — each one explained with a reason
+```
 
 ---
 
-## Key Findings
+## Results
 
-### Finding 1 — Optimizer produces measurably better geometry on complex objects
-
-**Test: `dragon` vs `3D model of dragon, game-ready stylized asset, organic skin and scales, clean quad topology, isolated object, no background`**
+### Dragon — +20.8% geometry, clean topology confirmed
 
 | Metric | Naive `dragon` | Optimized | Delta |
 |---|---|---|---|
@@ -44,106 +32,89 @@ Text-to-3D is 10x harder to prompt than text-to-image. There's no established me
 | Watertight | — | **Yes** | ✅ |
 | Holes | — | **0** | ✅ |
 | Non-manifold edges | — | **0** | ✅ |
-| Printability | ✅ | ✅ | same |
 
-The optimized prompt produced 20% more geometric detail and confirmed clean topology — watertight, zero holes, zero non-manifold edges. These are the exact metrics that matter for rigging, animation, and 3D printing workflows.
-
-The naive prompt generated a recognizable dragon. The optimized prompt generated a better one — measurably, not just visually.
-
----
-
-### Finding 2 — Over-specified prompts can change weapon archetype, not just quality
-
-**Test: `a cool sword` vs `3D model of a detailed sword, game-ready low-poly asset, tempered steel blade, clean quad topology, isolated object, no background`**
+### Sword — +29.1% geometry, archetype shift identified
 
 | Metric | Naive `a cool sword` | Optimized | Delta |
 |---|---|---|---|
 | Faces | 129,400 | 167,050 | **+37,650 (+29.1%)** |
 | Vertices | 64,690 | 83,527 | **+18,837 (+29.1%)** |
-| Printability | ✅ | ✅ | same |
 
-The optimized prompt produced 29% more geometry — but also changed the weapon type. The naive prompt generated an **ornate fantasy longsword** with decorative hilt and cross-guard. The optimized prompt generated a **realistic combat knife** — a different weapon archetype entirely.
-
-The "tempered steel blade" material hint unintentionally steered Meshy toward a modern tactical style rather than the fantasy aesthetic implied by "cool sword."
-
-**Takeaway:** Over-specifying material hints on weapons overrides implicit style context. The optimizer needs smarter material inference — when the input implies fantasy (e.g., "cool sword"), the material hint should match that aesthetic, not default to realistic steel.
+Naive produced an ornate fantasy longsword. Optimized produced a realistic combat knife. More geometry — but wrong archetype. This exposed a flaw in the material inference logic (see Findings below).
 
 ---
 
-### Finding 3 — IP characters need image-to-3D, not text optimization
+## The Problem
 
-**Test: `dota 2 sf` (Shadow Fiend)**
+Meshy has 6M users but most never convert to paid. The biggest activation killer: prompt sensitivity.
 
-Neither naive nor optimized text prompts produced a model resembling Shadow Fiend. The tool correctly identified it as a Dota 2 character and added the right style tags — but Meshy's model doesn't have enough hero-specific training data to reconstruct a specific character from text alone.
+Text-to-3D is 10x harder to prompt than text-to-image. New users have no mental model for it — they type one word, get a mediocre mesh, burn free credits, and leave before the "aha moment."
 
-**Fix:** Meshy's image-to-3D workflow solves this. The tool now surfaces this recommendation automatically.
-
-**Product insight:** Meshy should route users asking for specific IP characters toward image-to-3D more prominently in the UI.
-
----
-
-### Finding 4 — Free tier download gating breaks the evaluation loop
-
-While running this experiment, a real friction point surfaced: **the free tier doesn't allow GLB downloads.**
-
-This means free users can generate models but can't export, evaluate, or use them in Blender or game engines. The "try before you buy" loop is broken — users who can't evaluate quality won't upgrade.
-
-This is likely a significant, fixable conversion drag.
+**Evidence:**
+- G2: *"small wording changes produce wildly different results"*
+- Trustpilot: users reporting wasted credits on bad first outputs
+- Meshy's own prompt tips doc — companies only write those when support tickets pile up
 
 ---
 
-## Improvements Made During Experiment
+## Key Findings
 
-### Game IP detection
-After testing Dota 2 characters, the rewriter was upgraded to detect known game IPs and apply IP-specific art styles:
+### ✅ Finding 1 — Works on complex objects
+Optimized dragon prompt produced 20.8% more geometry, confirmed watertight with 0 holes and 0 non-manifold edges. The optimizer adds enough context to push Meshy toward higher-fidelity outputs on ambiguous objects.
 
-```
-Input:  dota 2 invoker
-Output: 3D model of dota 2 invoker, Dota 2 stylized hero model, 
-        Valve art style, detailed armor and fabric, game-ready PBR 
-        materials, clean quad topology, isolated object, no background, 
-        standing upright in T-pose
-```
+### ⚠️ Finding 2 — Material hints can override style intent
+"Tempered steel blade" steered Meshy from a fantasy sword to a realistic knife. **Fix needed:** material inference must detect implied style context (fantasy vs realistic) before choosing a hint.
 
-Supported IPs: Dota 2, League of Legends, Overwatch, Valorant, Fortnite, World of Warcraft, Minecraft, Pokemon.
+### 🔍 Finding 3 — IP characters need image-to-3D, not text
+Neither naive nor optimized prompts produced a recognizable Shadow Fiend. The tool now detects IP characters and routes to image-to-3D automatically.
 
-### Named character recognition
-Added a known character list (Shadow Fiend, Invoker, Pudge, Yasuo, Tracer, etc.) so abbreviated or named inputs are correctly detected as characters rather than generic objects.
-
-### Honest routing
-When the optimizer detects an IP character, it now flags that image-to-3D is the correct workflow — rather than producing an over-optimized text prompt that still won't work.
+### 🔍 Finding 4 — Free tier download gating breaks evaluation loop
+Free users can generate but can't export GLBs. They can't evaluate quality in Blender or a game engine. The try-before-you-buy loop is broken — likely a fixable conversion drag.
 
 ---
 
-## Rewriter Rules
+## Improvements Built During Experiment
 
-Every change is deterministic and explainable — no black-box LLM:
+**Game IP detection** — detects Dota 2, LoL, Overwatch, Valorant, Fortnite, WoW, Minecraft, Pokemon and applies IP-specific art styles automatically.
+
+**Named character recognition** — Shadow Fiend, Invoker, Yasuo, Tracer and others correctly detected as characters, not generic objects.
+
+**Image-to-3D routing** — when IP character is detected, tool flags the correct workflow instead of over-optimizing a text prompt that won't work.
+
+---
+
+## Pending Improvements
+
+- [ ] Context-aware material inference (detect fantasy vs realistic from prompt tone before adding material hint)
+- [ ] Hero/character database for IP-specific style hints beyond generic "Valve art style"
+- [ ] Mesh scoring on Meshy outputs (blocked by free tier download limit — infrastructure is ready)
+- [ ] A/B test pipeline to validate rules at scale
+
+---
+
+## How It Works
+
+**Rewriter rules** — deterministic, fully explainable:
 
 | Rule | Reason |
 |---|---|
 | Add "3D model of" prefix | Meshy responds better to explicit 3D framing |
 | Detect object type | Enables context-aware downstream rules |
-| Add style tag | Style-less prompts produce inconsistent results |
+| Add style tag | Style-less prompts produce inconsistent outputs |
 | Add material hint | Material ambiguity causes texture inconsistency |
 | Add "clean quad topology" | Improves mesh quality for rigging and sculpting |
 | Add isolation context | Prevents unwanted scene elements |
 | Add T-pose for characters | Critical for rigging compatibility |
 | Replace vague adjectives | "cool" → "detailed", "nice" → "well-crafted" |
 
----
+**Mesh scorer** — 4 objective topology metrics:
 
-## Mesh Scoring Methodology
-
-Each GLB is scored on 4 objective topology metrics:
-
-| Metric | Weight | Why It Matters |
-|---|---|---|
-| Watertight | 35 pts | Printability, rigging |
-| Is Volume | 25 pts | Manifold + consistent normals |
-| Non-manifold edges | 25 pts | Topology quality |
-| Degenerate faces | 15 pts | Mesh cleanliness |
-
-Composite score: 0–100. Scoring was blocked on Meshy free tier (no GLB downloads) — infrastructure is built and validated on external GLBs.
+| Metric | Weight |
+|---|---|
+| Watertight | 35 pts |
+| Is Volume | 25 pts |
+| Non-manifold edges | 25 pts |
+| Degenerate faces | 15 pts |
 
 ---
 
@@ -153,10 +124,6 @@ Composite score: 0–100. Scoring was blocked on Meshy free tier (no GLB downloa
 git clone https://github.com/sanmati1997/meshy-prompt-forge
 cd meshy-prompt-forge
 pip install -r requirements.txt
-```
-
-**Web app:**
-```bash
 streamlit run app.py
 ```
 
@@ -165,19 +132,11 @@ streamlit run app.py
 python run.py rewrite "a cool sword"
 python run.py score model.glb
 python run.py compare naive.glb optimized.glb
-python run.py batch
 ```
 
----
-
-## Stack
-
-- Python, trimesh, numpy — mesh scoring
-- Streamlit, Plotly — web UI
-- Rule-based rewriter — transparent, auditable, no LLM dependency
-- Meshy free tier — 3D generation
+**Stack:** Python · trimesh · Streamlit · Plotly · Meshy free tier · $0
 
 ---
 
 Built by [Sanmati Sawalwade](https://linkedin.com/in/sanmatiwalwade) — MS Information Systems, Northeastern University Silicon Valley  
-Email: sawalwade.s@northeastern.edu
+sawalwade.s@northeastern.edu
