@@ -62,10 +62,10 @@ A heuristic-driven prompt optimizer and mesh quality scorer, built in one night 
 
 ### The 8 optimizer patterns
 
-| Rule | Why |
+| Pattern | Why |
 |---|---|
 | Add `3D model of` prefix | Meshy responds better to explicit 3D framing |
-| Detect object type (character / weapon / vehicle / prop / creature) | Enables context-aware downstream rules |
+| Detect object type (character / weapon / vehicle / prop / creature) | Enables context-aware downstream patterns |
 | Add style tag if missing | Style-less prompts produce inconsistent results |
 | Add material hint if missing | Material ambiguity causes texture inconsistency |
 | Add `clean quad topology` | Improves mesh quality for rigging and sculpting |
@@ -102,10 +102,10 @@ Scores any GLB on 4 objective topology metrics:
 
 **What the optimizer changed (6 patterns applied):**
 
-| Change | Rule | Reason |
+| Change | Pattern | Reason |
 |---|---|---|
 | Added `3D model of` | Prefix pattern | Meshy anchors on explicit 3D framing |
-| Object type → **creature** | Type detection | Enables creature-specific downstream rules |
+| Object type → **creature** | Type detection | Enables creature-specific downstream patterns |
 | Added `game-ready stylized asset` | Style pattern | No style tag → inconsistent mesh detail distribution |
 | Added `organic skin and scales` | Material pattern | No material hint → texture ambiguity on complex surfaces |
 | Added `clean quad topology` | Topology pattern | Forces structured mesh for rigging/sculpting |
@@ -150,7 +150,7 @@ This finding required three experiments: naive, wrong-optimized, and fixed-optim
 
 **What the optimizer changed in the wrong version (6 patterns applied):**
 
-| Change | Rule | What went wrong |
+| Change | Pattern | What went wrong |
 |---|---|---|
 | Added `3D model of` | Prefix pattern | ✅ Correct |
 | Object type → **weapon** | Type detection | ✅ Correct |
@@ -189,7 +189,7 @@ The fixed-optimized version produced a proper fantasy sword — ornate detailing
 
 ---
 
-### Finding 3 — T-pose + isolation rule produces rigging-ready characters with 42% fewer faces
+### Finding 3 — T-pose + isolation pattern produces rigging-ready characters with 42% fewer faces
 
 **Object:** Warrior — a humanoid character asset.
 
@@ -199,10 +199,10 @@ The fixed-optimized version produced a proper fantasy sword — ornate detailing
 
 **What the optimizer changed (7 patterns applied):**
 
-| Change | Rule | Reason |
+| Change | Pattern | Reason |
 |---|---|---|
 | Added `3D model of` | Prefix pattern | Explicit 3D framing |
-| Object type → **character** | Type detection | Unlocks T-pose rule + isolation priority |
+| Object type → **character** | Type detection | Unlocks T-pose pattern + isolation priority |
 | Added `game-ready stylized asset` | Style pattern | Guides Meshy toward pipeline-ready output |
 | Added `fabric and leather armor` | Material pattern | Prevents ambiguous material assignment on clothing |
 | Added `clean quad topology` | Topology pattern | Structured mesh required for auto-rigging |
@@ -235,7 +235,7 @@ The naive `warrior` generated a visually impressive model — fully armored in h
 
 The optimized version is 42.1% smaller, in clean T-pose, with no base. It can be imported directly into any game engine and auto-rigged in one click.
 
-**Finding:** For character assets, optimization doesn't add geometry — it redirects geometry budget. The **-42.1% face count is a feature, not a flaw.** The isolation rule eliminated ~400K wasted faces on the pedestal. The T-pose rule produced an immediately riggable character. These two rules together are the highest-impact combination in the entire optimizer for game development use cases.
+**Finding:** For character assets, optimization doesn't add geometry — it redirects geometry budget. The **-42.1% face count is a feature, not a flaw.** The isolation pattern eliminated ~400K wasted faces on the pedestal. The T-pose pattern produced an immediately riggable character. These two patterns together are the highest-impact combination in the entire optimizer for game development use cases.
 
 **Impact:** A game developer using the naive prompt gets a model that requires hours of manual work (re-posing, base removal, rigging) before it's usable. The optimized prompt produces a drop-in character asset. The face count reduction also improves real-time performance — 574K faces is still high but meaningfully more manageable than 992K.
 
@@ -251,7 +251,7 @@ The optimized version is 42.1% smaller, in clean T-pose, with no base. It can be
 
 **What the optimizer changed (7 patterns applied, including IP detection):**
 
-| Change | Rule | Reason |
+| Change | Pattern | Reason |
 |---|---|---|
 | Added `3D model of` | Prefix pattern | Explicit 3D framing |
 | Detected IP → **Dota 2** | IP detection pattern | Triggers IP-specific style pack |
@@ -298,13 +298,13 @@ The optimized prompt produced a significantly better result structurally: a prop
 
 **What the optimizer changed (5 patterns applied):**
 
-| Change | Rule | Reason |
+| Change | Pattern | Reason |
 |---|---|---|
 | Added `3D model of` | Prefix pattern | Explicit 3D framing |
-| Object type → **prop** | Type detection | No T-pose rule — props don't need rigging |
+| Object type → **prop** | Type detection | No T-pose pattern — props don't need rigging |
 | Added `game-ready low-poly asset` | Style pattern | Guides toward efficient mesh density for a prop |
 | Added `matte surface texture` | Material pattern | Resolves material ambiguity on wooden/metal surfaces |
-| Added `clean quad topology` + `isolated object` | Topology + Isolation | Standard cleanup rules |
+| Added `clean quad topology` + `isolated object` | Topology + Isolation | Standard cleanup patterns |
 
 | Naive: `crate` | Optimized |
 |:---:|:---:|
@@ -373,7 +373,7 @@ The mesh scoring infrastructure in this project is fully built and validated. Bu
 |---|---|---|
 | Dragon: +20.8% geometry, topology fully fixed | Higher first-session success → lower churn → higher conversion | A/B test prompt suggestions at generation time |
 | Sword: material hints can destroy archetype | Wrong output is worse than no optimization — damages trust | Add style-context classifier (fantasy / realistic / sci-fi) before material inference |
-| Warrior: -42% faces, T-pose, no pedestal | Game dev users get assets that work in their pipeline immediately | Surface T-pose rule for character prompts; highlight in onboarding |
+| Warrior: -42% faces, T-pose, no pedestal | Game dev users get assets that work in their pipeline immediately | Surface T-pose pattern for character prompts; highlight in onboarding |
 | Dota 2 SF: text can't reproduce IP characters | Users burning credits on guaranteed failure | Route named character queries to image-to-3D with in-product nudge |
 | Crate: smallest lift, but topology still improves | Optimization ROI scales with object complexity | Weight suggestions by detected object complexity |
 | Free tier download gating | Broken evaluation loop — users can't validate value before paying | A/B test 1–3 free GLB downloads per month |
@@ -385,7 +385,7 @@ The mesh scoring infrastructure in this project is fully built and validated. Bu
 - Test set is small (6 object types, 1 session each). Findings are directional, not statistically significant.
 - No access to Meshy's internal funnel data — business implications are inferred from public evidence and experiment results.
 - Mesh scoring was blocked by free-tier download limits. Scoring infrastructure is built and validated on external GLBs but could not be run on Meshy-generated pairs.
-- Heuristic-driven rewriter has no feedback loop — rules were reverse-engineered by hand, not learned from real user failure data at scale.
+- Heuristic-driven rewriter has no feedback loop — patterns were reverse-engineered by hand, not learned from real user failure data at scale.
 - Generation variance: running the same prompt twice can produce different outputs. Each test was a single run.
 
 Being explicit about these limits is intentional. A PM or data scientist at Meshy would catch overclaiming immediately.
@@ -398,7 +398,7 @@ If I had access to Meshy's internal data, the three highest-value experiments wo
 
 1. **A/B test the optimizer in-product** — surface prompt suggestions at generation time and measure first-session success rate lift and credit-to-conversion rate. The dragon result (+20.8% geometry, topology confirmed) is the strongest argument for this experiment.
 
-2. **Style-context classifier** — train a lightweight model to detect fantasy vs. realistic vs. sci-fi intent before applying material hints. This directly fixes the sword archetype mismatch (Finding 2) and is the highest-priority gap in the current rule set. A small labeled dataset of prompts + intended styles would be enough to start.
+2. **Style-context classifier** — train a lightweight model to detect fantasy vs. realistic vs. sci-fi intent before applying material hints. This directly fixes the sword archetype mismatch (Finding 2) and is the highest-priority gap in the current pattern set. A small labeled dataset of prompts + intended styles would be enough to start.
 
 3. **Free download A/B test** — measure conversion impact of allowing 1–3 free GLB downloads per month. Hypothesis: users who can validate quality in Blender convert at 2–3x the rate of users who can only view in-browser. This is the lowest-cost experiment with the highest potential conversion impact.
 

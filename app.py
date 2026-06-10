@@ -43,7 +43,7 @@ tab1, tab2, tab3 = st.tabs(["Prompt Optimizer", "Mesh Scorer", "Results Dashboar
 
 with tab1:
     st.subheader("Prompt Optimizer")
-    st.write("Type a plain-English prompt. The optimizer rewrites it using rules reverse-engineered from Meshy's failure patterns.")
+    st.write("Type a plain-English prompt. The optimizer rewrites it using patterns reverse-engineered from Meshy's failure patterns.")
 
     col1, col2 = st.columns([1, 1])
 
