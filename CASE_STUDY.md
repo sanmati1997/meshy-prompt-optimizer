@@ -2,6 +2,7 @@
 
 **Author:** Sanmati Sawalwade  
 **Background:** MS Information Systems, Northeastern University (Silicon Valley) | Ex-Gameskraft | Startup Founder 
+
 **Actively interviewing:** Looking for Summer/Fall 2026 Internship opportunities
 
 **Built in:** One night  
