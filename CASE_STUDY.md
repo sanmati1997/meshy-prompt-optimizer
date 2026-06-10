@@ -4,7 +4,7 @@
 **Background:** MS Information Systems, Northeastern University (Silicon Valley) | Ex-Gameskraft | Startup Founder  
 **Built in:** One night  
 **Repo:** [github.com/sanmati1997/meshy-prompt-forge](https://github.com/sanmati1997/meshy-prompt-forge)  
-**Live demo:** [meshy-prompt-forge.streamlit.app](https://meshy-prompt-forge.streamlit.app)
+**Live demo:** [meshy-optimizer.streamlit.app](https://meshy-optimizer.streamlit.app)
 
 ---
 
@@ -268,5 +268,5 @@ Built in one night as a research project to understand Meshy's activation funnel
 The goal was not to build a polished product — it was to identify a real problem, build a working artifact, and produce evidence-backed findings. The tool is fully external — no internal Meshy data was used or required.
 
 **Repo:** [github.com/sanmati1997/meshy-prompt-forge](https://github.com/sanmati1997/meshy-prompt-forge)  
-**Live demo:** [meshy-prompt-forge.streamlit.app](https://meshy-prompt-forge.streamlit.app)  
+**Live demo:** [meshy-optimizer.streamlit.app](https://meshy-optimizer.streamlit.app)  
 **Contact:** sawalwade.s@northeastern.edu | [linkedin.com/in/sanmati-sawalwade](https://linkedin.com/in/sanmati-sawalwade)

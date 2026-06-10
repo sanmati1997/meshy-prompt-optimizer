@@ -2,7 +2,7 @@
 
 > Turns weak 3D prompts into production-ready ones — built to reduce activation drop-off on Meshy.ai.
 
-**[Live demo](https://meshy-prompt-forge.streamlit.app)** | **[Case study](CASE_STUDY.md)** | Built in one night
+**[Live demo](https://meshy-optimizer.streamlit.app)** | **[Case study](CASE_STUDY.md)** | Built in one night
 
 ---
 
