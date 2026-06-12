@@ -22,7 +22,7 @@ Changes: 5 — each one explained with a reason
 
 ## Results
 
-### Dragon — +20.8% geometry, topology fully confirmed
+### Dragon - +20.8% geometry, topology fully confirmed
 
 | Naive: `dragon` | Optimized |
 |:---:|:---:|
@@ -37,7 +37,7 @@ Changes: 5 — each one explained with a reason
 
 ---
 
-### Sword — material inference risk identified and fixed
+### Sword - material inference risk identified and fixed
 
 | Naive: `a cool sword` | Wrong optimized | Fixed optimized |
 |:---:|:---:|:---:|
@@ -47,7 +47,7 @@ Changes: 5 — each one explained with a reason
 
 ---
 
-### Warrior — T-pose + isolation produces rigging-ready assets
+### Warrior - T-pose + isolation produces rigging-ready assets
 
 | Naive: `warrior` | Optimized (T-pose) |
 |:---:|:---:|
@@ -63,7 +63,7 @@ Fewer faces = fewer wasted polygons on base geometry. Optimization redirected th
 
 ---
 
-### Dota 2 SF — IP characters need image-to-3D, not text optimization
+### Dota 2 SF - IP characters need image-to-3D, not text optimization
 
 | Official art | Naive: `dota 2 sf` | Optimized |
 |:---:|:---:|:---:|
@@ -73,7 +73,7 @@ Optimized prompt produced a better hero structure (+16.7% geometry), but neither
 
 ---
 
-### Crate — diminishing returns on simple props, topology still improves
+### Crate - diminishing returns on simple props, topology still improves
 
 | Naive: `crate` | Optimized |
 |:---:|:---:|
