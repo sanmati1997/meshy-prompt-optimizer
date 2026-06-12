@@ -1,6 +1,6 @@
 # Meshy Prompt Optimizer
 
-> Turns weak 3D prompts into production-ready ones — built to reduce activation drop-off on Meshy.ai.
+> Turns weak 3D prompts into production-ready ones - built to reduce activation drop-off on Meshy.ai.
 
 **[Live demo](https://meshy-optimizer.streamlit.app)** | **[Case study](CASE_STUDY.md)** | Built in one night
 
