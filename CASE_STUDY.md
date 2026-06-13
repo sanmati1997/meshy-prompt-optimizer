@@ -36,11 +36,11 @@ Text-to-3D is fundamentally harder to prompt than text-to-image. Users have ment
 
 | Source | Signal |
 |---|---|
-| G2 reviewer | *"Small wording changes produce wildly different results"* |
-| G2 reviewer | *"Limited prompt character space is frustrating"* |
-| Trustpilot | Multiple users report wasted credits on poor first outputs |
-| Meshy's own docs | A "prompt tips" section exists - companies only write those when support tickets pile up |
-| Pricing page | Free tier caps downloads - users can't evaluate models before upgrading |
+| [G2 reviewer](https://www.g2.com/products/meshy/reviews) | *"Small wording changes produce wildly different results"* |
+| [G2 reviewer](https://www.g2.com/products/meshy/reviews?qs=pros-and-cons) | *"Limited prompt character space is frustrating"* |
+| [Trustpilot](https://www.trustpilot.com/review/meshy.ai) | Multiple users report wasted credits on poor first outputs |
+| [Meshy's own docs](https://help.meshy.ai/en/articles/11972484-best-practices-for-creating-a-text-prompt) | A "prompt tips" section exists - companies only write those when support tickets pile up |
+| [Pricing page](https://www.meshy.ai/pricing) | Free tier caps downloads - users can't evaluate models before upgrading |
 
 This is an **activation problem**. Users hit the friction wall before they see the product's real value.
 

@@ -96,9 +96,9 @@ Meshy is backed by Sequoia and GGV Capital ($52M raised), ranked #1 in 3D AI too
 Text-to-3D is 10x harder to prompt than text-to-image. New users have no mental model for it. They type one word, get a mediocre mesh, burn free credits, and leave before the "aha moment."
 
 **Evidence:**
-- G2: *"small wording changes produce wildly different results"*
-- Trustpilot: users reporting wasted credits on bad first outputs
-- Meshy's own prompt tips doc (companies only write those when support tickets pile up)
+- [G2](https://www.g2.com/products/meshy/reviews): *"small wording changes produce wildly different results"*
+- [Trustpilot](https://www.trustpilot.com/review/meshy.ai): users reporting wasted credits on bad first outputs
+- [Meshy's own prompt tips doc](https://help.meshy.ai/en/articles/11972484-best-practices-for-creating-a-text-prompt) (companies only write those when support tickets pile up)
 
 ---
 
